@@ -1,0 +1,45 @@
+{
+	"environment": {
+		"default": "dev",
+		"dev": {
+			"source": "src",
+			"assets": "resources",
+			"test": "test",
+			"destination": "dist/build-dev",
+			"port": 3000,
+			"debug": true
+		},
+		"production": {
+			"source": "src",
+			"assets": "resources",
+			"test": "test",
+			"destination": "dist/build-prod",
+			"port": 8080,
+			"debug": false
+		}
+	},
+	"packages": {
+		"@timkendrick/react-app": {
+			"config": {
+				"source": {
+					"index": "<%= environment.source %>/index.html",
+					"scripts": "<%= environment.source %>",
+					"apps": "<%= environment.source %>/apps",
+					"components": "<%= environment.source %>/components",
+					"views": "<%= environment.source %>/views",
+					"styles": "<%= environment.source %>",
+					"assets": "<%= environment.assets %>",
+					"tests": "<%= environment.test %>/spec"
+				},
+				"destination": {
+					"root": "<%= environment.destination %>",
+					"index": "<%= environment.destination %>/index.html",
+					"js": "<%= environment.destination %>/js/app.js",
+					"css": "<%= environment.destination %>/css/app.css"
+				},
+				"port": "<%= environment.port %>",
+				"debug": "<%= environment.debug %>"
+			}
+		}
+	}
+}

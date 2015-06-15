@@ -1,0 +1,24 @@
+{
+  "name": "reactive-grid",
+  "version": "0.0.1",
+  "description": "Reactive stream-based grid",
+  "main": "index.js",
+  "scripts": {
+    "test": "skivvy run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timkendrick/reactive-grid.git"
+  },
+  "author": "Tim Kendrick <timkendrick@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timkendrick/reactive-grid/issues"
+  },
+  "homepage": "https://github.com/timkendrick/reactive-grid#readme",
+  "dependencies": {
+    "deep-equal": "^1.0.0",
+    "lodash.range": "^3.0.0",
+    "react": "^0.12.2"
+  }
+}
