@@ -57,7 +57,8 @@ function createColumn(columnName, columnWidth) {
 
 function createRow(columns, index) {
 	let model = createRowModel(columns, index);
-	return new Row(model);
+	let row = new Row(model);
+	return row;
 }
 
 function createRowModel(columns, rowIndex) {
