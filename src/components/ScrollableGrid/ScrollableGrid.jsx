@@ -7,23 +7,17 @@ module.exports = function() {
 	let headerRowHeight = this.getHeaderRowHeight();
 	let scrollBarWidth = this.getScrollBarWidth();
 	let scrollBarHeight = this.getScrollBarHeight();
-	let scrollContentWidth = this.getScrollContentWidth();
-	let scrollContentHeight = this.getScrollContentHeight();
-	let scrollTop = this.getRowScrollOffset(this.state.rowOffset);
-	let scrollLeft = this.getColumnScrollOffset(this.state.columnOffset);
 	return (
 		<div className="ScrollableGrid">
-			<Grid
+			<Grid ref="grid"
 				rows={ this.state.visibleRows }
 				columns={ this.state.visibleColumns }
 			/>
-			<ScrollPane
-				contentWidth={ scrollContentWidth }
-				contentHeight={ scrollContentHeight }
-				maxWidth={ scrollContentWidth + scrollBarWidth }
-				maxHeight={ headerRowHeight + scrollContentHeight + scrollBarHeight }
-				scrollTop={ scrollTop }
-				scrollLeft={ scrollLeft }
+			<ScrollPane ref="scroller"
+				contentWidth={ this.state.scrollContentWidth }
+				contentHeight={ this.state.scrollContentHeight }
+				maxWidth={ this.state.scrollContentWidth + scrollBarWidth }
+				maxHeight={ headerRowHeight + this.state.scrollContentHeight + scrollBarHeight }
 				onScrolled={ this.handleScrollPaneScrolled }
 			/>
 		</div>
