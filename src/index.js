@@ -6,7 +6,7 @@ var MainApp = require('./apps/MainApp');
 var MockGridDataSource = require('./services/MockGridDataSource');
 
 var numColumns = 10;
-var numRows = 100;
+var numRows = 500;
 
 var appProps = {
 	gridDataSource: new MockGridDataSource(numColumns, numRows, {
