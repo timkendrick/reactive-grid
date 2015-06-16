@@ -1,18 +1,29 @@
+var EventEmitter = require('events').EventEmitter;
 var range = require('lodash.range');
 
 var Column = require('../models/Column');
 var Row = require('../models/Row');
 
-class MockGridDataSource {
+class MockGridDataSource extends EventEmitter {
 	constructor(numColumns, numRows,
 		{
-			headerColumnWidth: headerColumnWidth,
-			columnWidth: columnWidth
+			headerColumnWidth,
+			columnWidth,
+			updateInterval = null,
+			rowUpdateProbability = 0,
+			cellUpdateProbability = 0
 		} = {}
 	) {
+		super();
 		let columnNames = getColumnNames(numColumns);
 		this.columns = createColumns(columnNames, columnWidth, headerColumnWidth);
 		this.rows = createRows(numRows, this.columns);
+		if (updateInterval) {
+			setInterval(() => {
+				this.rows = getUpdatedRows(this.columns, this.rows, rowUpdateProbability, cellUpdateProbability);
+				this.emit('update', this.rows);
+			}, updateInterval);
+		}
 	}
 
 	getRows() {
@@ -22,6 +33,21 @@ class MockGridDataSource {
 	getColumns() {
 		return this.columns;
 	}
+}
+
+function getUpdatedRows(columns, rows, rowUpdateProbability, cellUpdateProbability) {
+	rows.filter((row) => Math.random() < rowUpdateProbability)
+		.forEach((row) => {
+			let rowModel = columns
+				.slice(1)
+				.filter((column) => Math.random() < cellUpdateProbability)
+				.reduce((rowModel, column) => {
+					rowModel[column.id] = generateRandomInt(0, 100);
+					return rowModel;
+				}, row.model);
+			return new Row(rowModel);
+		});
+	return rows.slice();
 }
 
 function getColumnNames(numColumns) {
