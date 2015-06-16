@@ -41,6 +41,19 @@ var ScrollableGrid = React.createClass({
 	],
 
 	componentDidMount: function() {
+		this.updateSize();
+		window.addEventListener('resize', this.onWindowResized);
+	},
+
+	componentWillUnmount: function() {
+		window.removeEventListener('resize', this.onWindowResized);
+	},
+
+	onWindowResized: function() {
+		this.updateSize();
+	},
+
+	updateSize: function() {
 		let self = this;
 		let gridElement = getDomElement(this.refs.grid);
 		let scrollPaneElement = getDomElement(this.refs.scroller);
