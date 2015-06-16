@@ -106,7 +106,7 @@ var ScrollableGrid = React.createClass({
 		let rowPaginator = this.state.rowPaginator;
 
 		let containerWidth = this.state.containerWidth;
-		let containerHeight = this.state.containerWidth;
+		let containerHeight = this.state.containerHeight;
 
 		let columnOffset = columnPaginator.getOffsetAt(scaledX);
 		let rowOffset = rowPaginator.getOffsetAt(scaledY);
