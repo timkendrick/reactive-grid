@@ -3,11 +3,25 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 var Paginator = require('../../utils/Paginator');
 
-const SCROLLBAR_WIDTH = 15;
-const SCROLLBAR_HEIGHT = 15;
-
 const ROW_HEIGHT = 19;
 const HEADER_ROW_HEIGHT = 19;
+
+const SCROLLBAR_DIMENSIONS = (function getScrollbarDimensions() {
+	var dummyElem = document.createElement('div');
+	dummyElem.style.position = 'absolute';
+	dummyElem.style.overflow = 'scroll';
+	dummyElem.style.visibility = 'hidden';
+	document.body.appendChild(dummyElem);
+	var scrollbarDimensions = {
+		x: dummyElem.offsetWidth,
+		y: dummyElem.offsetHeight
+	};
+	document.body.removeChild(dummyElem);
+	return scrollbarDimensions;
+})();
+
+const SCROLLBAR_WIDTH = SCROLLBAR_DIMENSIONS.x;
+const SCROLLBAR_HEIGHT = SCROLLBAR_DIMENSIONS.y;
 
 var ScrollableGrid = React.createClass({
 
