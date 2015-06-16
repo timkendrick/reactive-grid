@@ -96,11 +96,8 @@ var ScrollableGrid = React.createClass({
 	},
 
 	handleScrollPaneScrolled: function(x, y) {
-		let scrollRatioX = this.state.scrollRatioX;
-		let scrollRatioY = this.state.scrollRatioY;
-
-		let scaledX = x / scrollRatioX;
-		let scaledY = y / scrollRatioY;
+		let scaledX = x / this.state.scrollRatioX;
+		let scaledY = y / this.state.scrollRatioY;
 
 		let columnPaginator = this.state.columnPaginator;
 		let rowPaginator = this.state.rowPaginator;
